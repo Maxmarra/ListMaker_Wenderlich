@@ -8,8 +8,7 @@ import com.example.listmaker.databinding.ListSelectionViewHolderBinding
 class ListSelectionRecyclerViewAdapter :
     RecyclerView.Adapter
     <ListSelectionRecyclerViewAdapter.
-    ListSelectionViewHolder>()
-{
+    ListSelectionViewHolder>(){
 
     val listTitles = arrayOf("Shopping List", "Chores", "Android Tutorials")
 
