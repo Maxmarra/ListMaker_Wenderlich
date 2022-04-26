@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.listmaker.databinding.ListSelectionViewHolderBinding
 import com.example.listmaker.models.TaskList
 
-class ListSelectionRecyclerViewAdapter (private val lists : MutableList<TaskList>) :
+class ListSelectionRecyclerViewAdapter (
+    private val lists : MutableList<TaskList>,
+    val clickListener: ListSelectionRecyclerViewClickListener) :
     RecyclerView.Adapter <ListSelectionRecyclerViewAdapter.ListSelectionViewHolder>(){
 
 
@@ -14,6 +16,10 @@ class ListSelectionRecyclerViewAdapter (private val lists : MutableList<TaskList
         val binding: ListSelectionViewHolderBinding
     ) :RecyclerView.ViewHolder(binding.root){
 
+    }
+
+    interface ListSelectionRecyclerViewClickListener {
+        fun listItemClicked(list: TaskList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListSelectionViewHolder {
@@ -27,6 +33,9 @@ class ListSelectionRecyclerViewAdapter (private val lists : MutableList<TaskList
                                   position: Int) {
         holder.binding.itemNumber.text = (position + 1).toString()
         holder.binding.itemString.text = lists[position].name
+        holder.itemView.setOnClickListener {
+            clickListener.listItemClicked(lists[position])
+        }
     }
 
     override fun getItemCount(): Int {
