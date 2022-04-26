@@ -62,8 +62,6 @@ class MainActivity : AppCompatActivity(),
         builder.setPositiveButton(positiveButtonTitle) { dialog, _ ->
             dialog.dismiss()
 
-            viewModel.saveList(TaskList(listTitleEditText.text.toString()))
-
             val taskList = TaskList(listTitleEditText.text.toString())
             viewModel.saveList(taskList)
             showListDetail(taskList)
@@ -74,12 +72,12 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun showListDetail(list: TaskList) {
-
+// 1
         val listDetailIntent = Intent(this,
             ListDetailActivity::class.java)
-
+// 2
         listDetailIntent.putExtra(INTENT_LIST_KEY, list)
-
+// 3
         startActivity(listDetailIntent)
     }
 
